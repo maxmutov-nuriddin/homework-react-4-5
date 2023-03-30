@@ -9,6 +9,7 @@ const SingleArticle = () => {
   const { id } = useParams();
 
   const [data, setData] = useState([]);
+  const [error, setError] = useState(null)
 
   const fetchData = async () => {
     try {
@@ -16,7 +17,7 @@ const SingleArticle = () => {
       setData(response.data);
       // console.log(response.data);
     } catch (error) {
-      
+      setError(error)
     }
   }
 
@@ -26,13 +27,15 @@ const SingleArticle = () => {
 
   return (
     <div>
-      <div className="article">
+      {
+      data.map((data)=>(
+        <div className="article">
         <div className="article__header">
-          <img src={data.flags} />
+          <img src={data.flags.png} alt='logo' />
         </div>
         <div className="article__container">
           <div className="article__section">
-            <h3 className="article__section--h3">{data.population}</h3>
+            <h3 className="article__section--h3">{data.name.common}</h3>
           </div>
           <Link to="/" className="article__btn">
             <span>Back to homepage
@@ -40,6 +43,8 @@ const SingleArticle = () => {
           </Link>
         </div>
       </div>
+      ))
+      }
     </div>
   )
 }
