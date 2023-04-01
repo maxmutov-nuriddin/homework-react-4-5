@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import Card from '../counter/counter';
-// import Asia from '../serch/serch';
 
 
 
